@@ -116,7 +116,7 @@ h1 {
   background: transparent;
 }
 .chat-window::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  background: linear-gradient(180deg, rgba(239, 0, 0, 0.06), rgba(255,255,255,0.02));
   border-radius: 8px;
   border: 2px solid rgba(0,0,0,0.12);
 }
