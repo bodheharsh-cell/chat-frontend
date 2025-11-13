@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
+import "./App.css";
 
 const socket = io("https://chat-backend-98fg.onrender.com", {
   transports: ["websocket"], 
@@ -37,33 +38,30 @@ function App() {
   };
 
   return (
-    <div style={{ padding: 20 }}>
-      <h1>Chat App</h1>
+    <div className="App">
+      <div className="container">
+        <h1>Chat App</h1>
 
-      <div
-        style={{
-          border: "1px solid black",
-          height: 300,
-          overflowY: "scroll",
-          padding: 10,
-          marginBottom: 20,
-        }}
-      >
-        {messages.map((m) => (
-          <div key={m._id}>
-            <b>{m.sender?.username}:</b> {m.text}
-            <hr />
-          </div>
-        ))}
+        <div className="chat-window">
+          {messages.map((m) => (
+            <div key={m._id} className="message">
+              <strong>{m.sender?.username}</strong>
+              <span className="text">{m.text}</span>
+            </div>
+          ))}
+        </div>
+
+        <div className="composer">
+          <input
+            className="message-input"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            placeholder="Type a message..."
+          />
+
+          <button className="send-btn" onClick={sendMessage}>Send</button>
+        </div>
       </div>
-
-      <input
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        placeholder="Type a message..."
-      />
-
-      <button onClick={sendMessage}>Send</button>
     </div>
   );
 }
