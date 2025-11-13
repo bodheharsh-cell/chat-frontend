@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:5000"); // connect to backend
+const socket = io("https://chat-backend-98fg.onrender.com", {
+  transports: ["websocket"], 
+});
+
+// connect to backend
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -20,7 +24,7 @@ function App() {
     if (!text) return;
 
     // Send message by API (REST)
-    await fetch("http://localhost:5000/api/messages", {
+    await fetch("https://chat-backend-98fg.onrender.com/api/messages", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
